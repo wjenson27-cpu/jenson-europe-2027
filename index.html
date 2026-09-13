@@ -4,172 +4,231 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Jenson Europe 2027 — Celebrity Ascent Itinerary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 <style>
 :root {
-  --bg: #0c1117;
-  --bg2: #141c26;
-  --card: #1a2433;
-  --line: #2a3a4f;
-  --text: #e8eef6;
-  --muted: #9aacbf;
-  --gold: #c9a45c;
-  --gold2: #e0c080;
-  --teal: #3db8a8;
-  --booked: #2ecc71;
-  --hold: #f0b429;
-  --tbd: #8b9bb0;
-  --alert: #e85d5d;
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --sans: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --bg: #f4ebe0;
+  --bg2: #efe4d4;
+  --paper: #fbf6ee;
+  --card: #fbf6ee;
+  --ink: #2a221a;
+  --text: #2f271f;
+  --muted: #6e6256;
+  --line: #d9cbb8;
+  --line2: #c4b39a;
+  --wine: #7a2e3a;
+  --wine2: #9a3f4c;
+  --terracotta: #b85c38;
+  --olive: #5a6b45;
+  --gold: #9a7340;
+  --gold2: #b8924f;
+  --sea: #3a5a6e;
+  --booked: #3d6b4f;
+  --hold: #a67c2a;
+  --tbd: #7a7166;
+  --alert: #a33a3a;
+  --serif: "Cormorant Garamond", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --shadow: 0 12px 36px rgba(74, 52, 32, 0.10);
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  margin: 0; background: var(--bg); color: var(--text);
-  font-family: var(--sans); line-height: 1.55;
+  margin: 0;
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+  background-color: var(--bg);
   background-image:
-    radial-gradient(ellipse 80% 50% at 10% -10%, #1a2a3d 0%, transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 0%, #1e1830 0%, transparent 50%);
+    radial-gradient(ellipse 90% 55% at 0% 0%, rgba(184, 92, 56, 0.08), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 100% 8%, rgba(58, 90, 110, 0.07), transparent 50%),
+    linear-gradient(180deg, #f7f0e6 0%, #f1e6d8 100%);
 }
-a { color: var(--gold2); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a { color: var(--wine2); text-decoration: none; }
+a:hover { color: var(--terracotta); text-decoration: underline; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem 4rem; }
 
 /* NAV */
 .topnav {
   position: sticky; top: 0; z-index: 50;
-  backdrop-filter: blur(14px);
-  background: rgba(12,17,23,0.88);
+  backdrop-filter: blur(12px);
+  background: rgba(251, 246, 238, 0.92);
   border-bottom: 1px solid var(--line);
+  box-shadow: 0 1px 0 rgba(154, 115, 64, 0.12);
 }
 .topnav-inner {
-  max-width: 1080px; margin: 0 auto; padding: .7rem 1.25rem;
-  display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center;
+  max-width: 1080px; margin: 0 auto; padding: .75rem 1.25rem;
+  display: flex; flex-wrap: wrap; gap: .45rem .9rem; align-items: center;
 }
-.brand { font-family: var(--serif); color: var(--gold); font-weight: 600; letter-spacing: .02em; margin-right: auto; }
+.brand {
+  font-family: var(--serif); color: var(--wine);
+  font-weight: 600; font-size: 1.15rem; letter-spacing: .03em;
+  margin-right: auto;
+}
 .topnav a.navlink {
-  color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
-  text-decoration: none; white-space: nowrap;
+  color: var(--muted); font-size: .76rem; text-transform: uppercase;
+  letter-spacing: .07em; text-decoration: none; white-space: nowrap;
 }
-.topnav a.navlink:hover { color: var(--gold2); }
+.topnav a.navlink:hover { color: var(--wine); }
 
 /* HERO */
 .hero {
-  padding: 3.5rem 0 2.5rem;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 2rem;
+  padding: 3.2rem 0 2.4rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--line2);
+  position: relative;
+}
+.hero::after {
+  content: "✦";
+  display: block; text-align: center;
+  color: var(--gold); font-size: .9rem;
+  margin-top: 1.4rem; letter-spacing: .4em;
 }
 .hero .kicker {
-  color: var(--teal); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--terracotta); font-size: .78rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  font-weight: 600;
 }
 .hero h1 {
-  font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 5vw, 3.1rem);
-  margin: .4rem 0 .6rem; line-height: 1.15; color: #f5f0e6;
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(2.2rem, 5.2vw, 3.35rem);
+  margin: .35rem 0 .55rem; line-height: 1.12; color: var(--ink);
 }
-.hero .sub { color: var(--muted); font-size: 1.05rem; max-width: 42rem; }
+.hero .sub { color: var(--muted); font-size: 1.08rem; max-width: 42rem; }
+.hero .sub strong { color: var(--wine); }
 .meta-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
 .chip {
-  border: 1px solid var(--line); background: var(--bg2);
-  padding: .35rem .7rem; border-radius: 999px; font-size: .78rem; color: var(--muted);
+  border: 1px solid var(--line2); background: var(--paper);
+  padding: .38rem .75rem; border-radius: 999px; font-size: .78rem; color: var(--muted);
+  box-shadow: 0 1px 0 rgba(255,255,255,.7) inset;
 }
-.chip strong { color: var(--gold2); font-weight: 600; }
+.chip strong { color: var(--wine); font-weight: 600; }
 .alert-banner {
-  margin-top: 1.25rem; padding: .9rem 1.1rem; border-radius: 10px;
-  background: rgba(232,93,93,.12); border: 1px solid rgba(232,93,93,.45);
-  color: #ffc9c9; font-size: .95rem;
+  margin-top: 1.25rem; padding: .95rem 1.15rem; border-radius: 12px;
+  background: rgba(163, 58, 58, 0.08); border: 1px solid rgba(163, 58, 58, 0.35);
+  color: #6e2a2a; font-size: .95rem;
 }
-.alert-banner strong { color: #fff; }
+.alert-banner strong { color: var(--alert); }
 
 /* SECTIONS */
 section.day {
-  margin: 2.5rem 0; padding: 0; scroll-margin-top: 4.5rem;
+  margin: 2.4rem 0; padding: 0; scroll-margin-top: 4.5rem;
 }
 .day-card {
-  background: linear-gradient(180deg, var(--card), #151d29);
-  border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+  background: var(--card);
+  border: 1px solid var(--line2);
+  border-radius: 18px; overflow: hidden;
+  box-shadow: var(--shadow);
+  outline: 1px solid rgba(154, 115, 64, 0.18);
+  outline-offset: 3px;
 }
 .day-head {
-  padding: 1.25rem 1.4rem 1rem;
+  padding: 1.3rem 1.45rem 1.05rem;
   display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-start;
   border-bottom: 1px solid var(--line);
-  background: rgba(255,255,255,.02);
+  background:
+    linear-gradient(180deg, #f8f1e6 0%, var(--paper) 100%);
 }
 .day-head h2 {
-  font-family: var(--serif); font-size: 1.55rem; margin: 0; flex: 1 1 220px;
-  color: #f3efe6;
+  font-family: var(--serif); font-size: 1.7rem; margin: 0; flex: 1 1 220px;
+  color: var(--ink); font-weight: 600;
 }
-.day-date { color: var(--teal); font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; width: 100%; }
+.day-date {
+  color: var(--sea); font-size: .82rem; letter-spacing: .1em;
+  text-transform: uppercase; width: 100%; font-weight: 600;
+}
 .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
 .badge {
   font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
   padding: .28rem .55rem; border-radius: 6px; border: 1px solid transparent;
 }
-.badge.booked { background: rgba(46,204,113,.15); color: var(--booked); border-color: rgba(46,204,113,.35); }
-.badge.hold { background: rgba(240,180,41,.14); color: var(--hold); border-color: rgba(240,180,41,.35); }
-.badge.tbd { background: rgba(139,155,176,.12); color: var(--tbd); border-color: rgba(139,155,176,.3); }
-.badge.alert { background: rgba(232,93,93,.15); color: #ff8f8f; border-color: rgba(232,93,93,.4); }
+.badge.booked { background: rgba(61,107,79,.12); color: var(--booked); border-color: rgba(61,107,79,.35); }
+.badge.hold { background: rgba(166,124,42,.12); color: var(--hold); border-color: rgba(166,124,42,.35); }
+.badge.tbd { background: rgba(122,113,102,.10); color: var(--tbd); border-color: rgba(122,113,102,.28); }
+.badge.alert { background: rgba(163,58,58,.10); color: var(--alert); border-color: rgba(163,58,58,.35); }
 
-.day-body { padding: 1.25rem 1.4rem 1.5rem; }
-.blurb { color: #c5d0dc; margin: 0 0 1rem; }
+.day-body { padding: 1.3rem 1.45rem 1.55rem; }
+.blurb { color: #4a4036; margin: 0 0 1rem; font-size: 1.02rem; }
 .grid2 {
   display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
 }
 @media (max-width: 780px) { .grid2 { grid-template-columns: 1fr; } }
 .photo {
-  margin: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
-  background: #0a0e14;
+  margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
+  background: #e8ddd0;
 }
-.photo img { display: block; width: 100%; height: 220px; object-fit: cover; }
+.photo img { display: block; width: 100%; height: 230px; object-fit: cover; }
 .photo figcaption {
   font-size: .72rem; color: var(--muted); padding: .55rem .7rem; line-height: 1.35;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--line); background: #f7f0e6;
 }
 .details {
-  margin-top: 1rem; padding: 1rem 1.1rem; border-radius: 12px;
-  background: rgba(0,0,0,.25); border: 1px solid var(--line);
+  margin-top: 1rem; padding: 1rem 1.15rem; border-radius: 14px;
+  background: #f3eadc; border: 1px solid var(--line);
 }
 .details h3 {
-  margin: 0 0 .55rem; font-size: .75rem; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--gold);
+  margin: 0 0 .55rem; font-size: .74rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--terracotta); font-weight: 700;
 }
-.details ul { margin: 0; padding-left: 1.1rem; color: #c8d3df; }
-.details li { margin: .25rem 0; }
-.details code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86em; color: #e6d5a8; }
+.details ul { margin: 0; padding-left: 1.1rem; color: #3d342b; }
+.details li { margin: .28rem 0; }
+.details code, .mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .86em; color: var(--wine);
+}
 
 .mapbox {
-  margin-top: 1rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
-  background: #0a0e14;
+  margin-top: 1rem; border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
+  background: #e8ddd0;
 }
-.mapbox iframe { display: block; width: 100%; height: 260px; border: 0; filter: grayscale(.2) contrast(1.05); }
-.map-links { font-size: .82rem; padding: .55rem .8rem; color: var(--muted); border-top: 1px solid var(--line); }
+.mapbox iframe {
+  display: block; width: 100%; height: 260px; border: 0;
+  filter: sepia(.18) saturate(.9) contrast(1.02);
+}
+.map-links {
+  font-size: .82rem; padding: .55rem .8rem; color: var(--muted);
+  border-top: 1px solid var(--line); background: #f7f0e6;
+}
 
 /* Ship */
 .ship-hero img { width: 100%; max-height: 360px; object-fit: cover; display: block; }
-.ship-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .75rem; margin: 1rem 0; }
-.fact {
-  background: rgba(0,0,0,.28); border: 1px solid var(--line); border-radius: 10px; padding: .8rem .9rem;
+.ship-facts {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: .75rem; margin: 1rem 0;
 }
-.fact .lbl { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
-.fact .val { color: var(--gold2); font-family: var(--serif); font-size: 1.05rem; margin-top: .2rem; }
+.fact {
+  background: #f3eadc; border: 1px solid var(--line); border-radius: 12px; padding: .85rem .95rem;
+}
+.fact .lbl { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+.fact .val { color: var(--wine); font-family: var(--serif); font-size: 1.15rem; margin-top: .2rem; font-weight: 600; }
 
 footer {
-  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
-  color: var(--muted); font-size: .8rem;
+  margin-top: 3rem; padding-top: 1.5rem;
+  border-top: 2px solid var(--line2);
+  color: var(--muted); font-size: .8rem; text-align: center;
+}
+footer::before {
+  content: "— buon viaggio —";
+  display: block; font-family: var(--serif); font-style: italic;
+  color: var(--gold); font-size: 1rem; margin-bottom: .75rem;
 }
 .toc {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: .5rem; margin: 1.5rem 0 0;
+  gap: .55rem; margin: 1.5rem 0 0;
 }
 .toc a {
-  display: block; padding: .65rem .8rem; border-radius: 10px;
-  background: var(--bg2); border: 1px solid var(--line); color: var(--text);
-  text-decoration: none; font-size: .88rem;
+  display: block; padding: .7rem .85rem; border-radius: 12px;
+  background: var(--paper); border: 1px solid var(--line); color: var(--ink);
+  text-decoration: none; font-size: .9rem; font-family: var(--serif); font-weight: 600;
+  box-shadow: 0 1px 0 rgba(255,255,255,.65) inset;
 }
-.toc a:hover { border-color: var(--gold); color: var(--gold2); }
-.toc a span { display: block; color: var(--muted); font-size: .72rem; margin-top: .15rem; }
+.toc a:hover { border-color: var(--terracotta); color: var(--wine); }
+.toc a span { display: block; color: var(--muted); font-size: .72rem; margin-top: .15rem; font-family: var(--sans); font-weight: 400; }
 </style>
 </head>
+
 <body>
 <nav class="topnav"><div class="topnav-inner">
   <div class="brand">Jenson · Europe 2027</div>
@@ -194,7 +253,7 @@ footer {
 <header class="hero" id="overview">
   <div class="kicker">Italy · Greece · Croatia · Montenegro</div>
   <h1>Celebrity Ascent Itinerary</h1>
-  <p class="sub">Pre-cruise London &amp; Rome, then a 10-night Edge Series sailing — Fri May 28 through Mon Jun 14, <strong style="color:var(--gold2)">2027</strong>. Package <span class="mono">AT10M397</span>.</p>
+  <p class="sub">Pre-cruise London &amp; Rome, then a 10-night Edge Series sailing — Fri May 28 through Mon Jun 14, <strong style="color:var(--wine)">2027</strong>. Package <span class="mono">AT10M397</span>.</p>
   <div class="meta-row">
     <span class="chip"><strong>Embark</strong> Fri Jun 4 · Civitavecchia · 5:00 pm</span>
     <span class="chip"><strong>Disembark</strong> Mon Jun 14 · 5:00 am</span>
