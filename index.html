@@ -226,6 +226,65 @@ footer::before {
 }
 .toc a:hover { border-color: var(--terracotta); color: var(--wine); }
 .toc a span { display: block; color: var(--muted); font-size: .72rem; margin-top: .15rem; font-family: var(--sans); font-weight: 400; }
+
+/* COUNTDOWN */
+.countdown-bar {
+  background: linear-gradient(180deg, #f8f1e6, #f3eadc);
+  border-bottom: 1px solid var(--line2);
+  padding: .85rem 1.25rem;
+}
+.countdown-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: .75rem 1.25rem;
+}
+@media (max-width: 720px) { .countdown-inner { grid-template-columns: 1fr; } }
+.cd-card {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .55rem 1rem;
+  padding: .7rem .95rem; border-radius: 14px;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 1px 0 rgba(255,255,255,.7) inset;
+}
+.cd-label {
+  font-family: var(--serif); font-weight: 600; color: var(--wine);
+  font-size: 1.05rem; min-width: 7.5rem;
+}
+.cd-label span { display: block; font-family: var(--sans); font-size: .68rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: .1rem; }
+.cd-digits { display: flex; flex-wrap: wrap; gap: .35rem; margin-left: auto; }
+.cd-unit {
+  text-align: center; min-width: 3.1rem; padding: .35rem .4rem;
+  background: #f3eadc; border: 1px solid var(--line); border-radius: 10px;
+}
+.cd-unit b {
+  display: block; font-family: var(--serif); font-size: 1.35rem; color: var(--ink); line-height: 1.1;
+}
+.cd-unit i {
+  font-style: normal; font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+}
+.cd-done { color: var(--olive); font-weight: 600; font-size: .9rem; margin-left: auto; }
+
+/* LOCAL TIPS */
+.local-tips {
+  margin-top: 1.15rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: .85rem;
+}
+@media (max-width: 780px) { .local-tips { grid-template-columns: 1fr; } }
+.tip-col {
+  padding: 1rem 1.1rem; border-radius: 14px;
+  background: #f7f0e6; border: 1px solid var(--line);
+}
+.tip-col.food { border-left: 3px solid var(--terracotta); }
+.tip-col.miss { border-left: 3px solid var(--sea); }
+.tip-col h3 {
+  margin: 0 0 .55rem; font-size: .74rem; letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 700;
+}
+.tip-col.food h3 { color: var(--terracotta); }
+.tip-col.miss h3 { color: var(--sea); }
+.tip-col ul { margin: 0; padding-left: 1.05rem; color: #3d342b; }
+.tip-col li { margin: .32rem 0; font-size: .95rem; }
+.tip-col li strong { color: var(--ink); }
+
 </style>
 </head>
 
@@ -311,7 +370,20 @@ footer::before {
         <li>Post-booking explorer: <a href="https://www.celebritycruises.com/post-booking/explore-itinerary?bid=9491068&amp;sdt=2027-06-04&amp;scd=AT&amp;lnm=JENSON&amp;gic=true" target="_blank" rel="noopener">bid 9491068</a></li>
       </ul>
     </div>
-  </div>
+<!-- tips:ship -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try onboard</h3><ul>
+        <li>At least one <strong>specialty dining</strong> night as a family</li>
+        <li>Oceanview breakfast / buffet without rushing a port clock</li>
+        <li>Sunset cocktails at <strong>Sunset Bar</strong> or Magic Carpet</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Ship tips</h3><ul>
+        <li>Walk Deck 11 to your cabins on embark day — learn the shortcuts</li>
+        <li>Download offline maps for ports (spotty cell in coves)</li>
+        <li>Set a family muster / meeting spot for late returns</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -370,7 +442,24 @@ footer::before {
         title="Conrad London St James map"></iframe>
       <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Conrad+London+St.+James,+22-28+Broadway,+London+SW1H+0BH" target="_blank" rel="noopener">Google Maps · Conrad St James</a></div>
     </div>
-  </div>
+<!-- tips:london -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li><strong>Full English</strong> or a proper hotel breakfast before sightseeing</li>
+        <li><strong>Sunday roast</strong> with Yorkshire pudding (any May 30 weekend feel)</li>
+        <li><strong>Fish &amp; chips</strong> from a proper chippy — malt vinegar, mushy peas</li>
+        <li><strong>Afternoon tea</strong> near St James / Mayfair if you want the ritual</li>
+        <li><strong>Pub pie + pint</strong> — sticky toffee pudding for dessert</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li><strong>Thames blue hour</strong> walk — Westminster → Embankment</li>
+        <li><strong>Changing of the Guard</strong> timing (check day-of schedule)</li>
+        <li><strong>Borough Market</strong> if you have a free midday</li>
+        <li><strong>Oyster / contactless</strong> on Tube — skip paper tickets</li>
+        <li>Pack a light layer — May evenings still cool</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -417,7 +506,24 @@ footer::before {
         title="Hotel Indigo Rome St George area"></iframe>
       <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Indigo+Rome+-+St.+George,+Via+Giulia+62,+Rome" target="_blank" rel="noopener">Google Maps · Indigo St. George</a></div>
     </div>
-  </div>
+<!-- tips:rome -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li><strong>Cacio e pepe</strong> / carbonara / amatriciana — Roman pasta trinity</li>
+        <li><strong>Supplì</strong> (fried risotto balls) as a street snack</li>
+        <li><strong>Maritozzo</strong> or gelato after Vatican / Centro</li>
+        <li><strong>Espresso al banco</strong> — stand at the bar, don’t sit unless you want the surcharge</li>
+        <li><strong>Artichokes</strong> (carciofi) if spring menus still have them</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li><strong>Timed Vatican tickets</strong> — buy ahead; dress code for St Peter’s</li>
+        <li><strong>Trastevere evening</strong> for atmosphere (and dinner)</li>
+        <li><strong>Trevi / Pantheon early</strong> before cruise-ship day crowds</li>
+        <li>Confirm <strong>LHR→FCO</strong> for Bill &amp; Kelli before Jun 1</li>
+        <li>Plan the <strong>Civitavecchia transfer</strong> day before embark (train or car)</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -455,7 +561,21 @@ footer::before {
         title="Civitavecchia port map"></iframe>
       <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Largo+della+Pace,+Civitavecchia" target="_blank" rel="noopener">Google Maps · Largo della Pace</a> · <a href="https://civitavecchia.portmobility.it/en/rct-cruise-terminal-port-civitavecchia" target="_blank" rel="noopener">Port Mobility</a></div>
     </div>
-  </div>
+<!-- tips:embark -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li>Light lunch in town if you arrive early — <strong>seafood / pasta</strong> near the harbor</li>
+        <li>Save appetite for <strong>sail-away dinner</strong> on Ascent</li>
+        <li>Grab water + fruit before security lines</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li>Arrive with buffer — Celebrity departs <strong>5:00 pm</strong></li>
+        <li>Use port shuttle to <strong>Largo della Pace</strong> hub; don’t walk luggage from berth</li>
+        <li>Download the Celebrity app; photo of passports + booking</li>
+        <li>Quick look at <strong>Forte Michelangelo</strong> only if time allows</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -492,7 +612,23 @@ footer::before {
         title="Messina cruise port"></iframe>
       <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Messina+cruise+terminal" target="_blank" rel="noopener">Google Maps · Messina cruise terminal</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Teatro+Antico+di+Taormina" target="_blank" rel="noopener">Taormina theatre</a></div>
     </div>
-  </div>
+<!-- tips:messina -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li><strong>Arancini</strong> — Sicily’s iconic fried rice cones</li>
+        <li><strong>Cannoli</strong> with fresh ricotta (eat same-day, not packaged)</li>
+        <li><strong>Granita + brioche</strong> if it’s hot after Etna</li>
+        <li><strong>Swordfish / seafood</strong> if you stay harbor-side</li>
+        <li><strong>Pasta alla Norma</strong> (eggplant + ricotta salata)</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li>Pick <strong>Etna OR Taormina</strong> depth — both full is rushed</li>
+        <li>Messina <strong>Duomo astronomical clock</strong> if you stay in town</li>
+        <li>Cash/card for roadside gelato stops</li>
+        <li>Return buffer — dock until <strong>8:30 pm</strong> but traffic bites</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -516,7 +652,21 @@ footer::before {
         <li>No tender/dock · optional Wi‑Fi / beverage / specialty packages are upsells only</li>
       </ul>
     </div>
-  </div>
+<!-- tips:sea1 -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li>Book one <strong>specialty dinner</strong> (Le Voyage / Cosmopolitan vibe)</li>
+        <li>Rooftop Garden lunch with a view</li>
+        <li>Try the <strong>gelato / soft-serve</strong> circuit between pools</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li><strong>Magic Carpet / Sunset Bar</strong> at golden hour</li>
+        <li>Spa or spa-day pass if the Sicily day fried you</li>
+        <li>Laundry / formal night prep for next ports</li>
+        <li>Review tomorrow’s Olympia timing (early call)</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -546,7 +696,23 @@ footer::before {
         title="Katakolon port"></iframe>
       <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Katakolo+cruise+port" target="_blank" rel="noopener">Google Maps · Katakolo</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Archaeological+Site+of+Olympia" target="_blank" rel="noopener">Ancient Olympia</a></div>
     </div>
-  </div>
+<!-- tips:katakolon -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li><strong>Greek salad</strong> with real feta + olive oil</li>
+        <li><strong>Souvlaki / gyros</strong> back in Katakolon harbor</li>
+        <li><strong>Fresh grilled octopus</strong> if the taverna looks busy with locals</li>
+        <li><strong>Loukoumades</strong> (honey doughnuts) for a sweet finish</li>
+        <li>Iced <strong>freddo espresso</strong> in the heat</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li>Ancient Olympia <strong>stadium starting line</strong> + Temple of Hera</li>
+        <li>Archaeological Museum if legs allow</li>
+        <li>Hat, water, decent shoes — dusty site, June sun</li>
+        <li>Harbor stroll after the site — easy wind-down before all-aboard</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -576,7 +742,23 @@ footer::before {
         title="Corfu New Port"></iframe>
       <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Corfu+New+Port" target="_blank" rel="noopener">Google Maps · Corfu New Port</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Paleokastritsa+Corfu" target="_blank" rel="noopener">Paleokastritsa</a></div>
     </div>
-  </div>
+<!-- tips:corfu -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li><strong>Pastitsada</strong> — Corfu’s spiced meat + pasta classic</li>
+        <li><strong>Sofrito</strong> (garlic-wine veal) if on a traditional menu</li>
+        <li><strong>Kumquat liqueur</strong> tasting (island signature)</li>
+        <li>Fresh <strong>seafood by the Liston</strong> or Paleokastritsa cove</li>
+        <li><strong>Baklava / galaktoboureko</strong> with Greek coffee</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li>Split day: <strong>Paleokastritsa</strong> water + <strong>Old Town</strong> fortresses</li>
+        <li>Walk the <strong>Liston / Spianada</strong> — Venetian Corfu at its best</li>
+        <li>Old Fortress views if heat allows</li>
+        <li>Swim kit for Paleokastritsa — water is the point</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -613,7 +795,23 @@ footer::before {
         title="Split Diocletian Palace"></iframe>
       <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Diocletian%27s+Palace+Split" target="_blank" rel="noopener">Google Maps · Diocletian’s Palace</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Blue+Lagoon+Trogir" target="_blank" rel="noopener">Blue Lagoon</a></div>
     </div>
-  </div>
+<!-- tips:split -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li><strong>Gregada / fish stew</strong> or simply grilled catch of the day</li>
+        <li><strong>Peka</strong> (slow-baked meat/octopus under the bell) if available</li>
+        <li><strong>Black risotto</strong> (crni rižot) — Adriatic classic</li>
+        <li><strong>Pašticada</strong> with gnocchi (Dalmatian Sunday energy)</li>
+        <li><strong>Rakija</strong> sip + green olives on the Riva</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li>Walk <strong>Diocletian’s Palace</strong> — cellars + peristyle</li>
+        <li>Decide: palace depth <strong>or</strong> Blue Lagoon / Trogir boat — both is tight</li>
+        <li>Gelato on the Riva before all-aboard</li>
+        <li>Easy walk-off port — no need to rush a shuttle for Old Town</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -650,7 +848,23 @@ footer::before {
         title="Port of Bar Montenegro"></iframe>
       <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Port+of+Bar+Montenegro" target="_blank" rel="noopener">Google Maps · Port of Bar</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Kotor+Old+Town" target="_blank" rel="noopener">Kotor Old Town</a></div>
     </div>
-  </div>
+<!-- tips:bar -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li><strong>Njeguški pršut</strong> (smoke-cured ham) + local cheese</li>
+        <li><strong>Seafood buzara</strong> in Kotor if you lunch in town</li>
+        <li><strong>Kajmak</strong> with warm bread</li>
+        <li>Montenegrin <strong>olive oil</strong> tasting near Bar if you stay local</li>
+        <li><strong>Local wine</strong> (Vranac) by the glass</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li><strong>Historic Kotor</strong> walls / cathedral square — the day’s jackpot</li>
+        <li>Fortress stairs only if knees + heat cooperate</li>
+        <li>Expect a long coach day — snacks + motion plan</li>
+        <li>Bar port is industrial — use the shuttle; don’t wander with a tight clock</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -680,7 +894,23 @@ footer::before {
         title="Dubrovnik Old Town"></iframe>
       <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Port+of+Dubrovnik+Gru%C5%BE" target="_blank" rel="noopener">Google Maps · Gruž port</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Pile+Gate+Dubrovnik" target="_blank" rel="noopener">Pile Gate</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Dubrovnik+Cable+Car" target="_blank" rel="noopener">Cable car</a></div>
     </div>
-  </div>
+<!-- tips:dubrovnik -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li><strong>Fresh oysters / mussels</strong> from nearby beds if on menus</li>
+        <li><strong>Black risotto</strong> or grilled squid off Stradun side streets</li>
+        <li><strong>Rozata</strong> (Dubrovnik caramel custard)</li>
+        <li>Avoid the most touristy plazas for dinner — one alley over is better</li>
+        <li>Cold <strong>draft beer</strong> after the wall walk</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li><strong>City walls</strong> early — June midday heat is real</li>
+        <li><strong>Srđ cable car</strong> for the bay panorama</li>
+        <li>Bus/taxi from <strong>Gruž</strong> to Pile Gate (not a casual walk)</li>
+        <li>Cash for wall tickets; water + hat mandatory</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -701,7 +931,20 @@ footer::before {
       <h3>Notes</h3>
       <ul><li>Cabana still <strong>TBD / not booked</strong> on planner sheet</li></ul>
     </div>
-  </div>
+<!-- tips:sea2 -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li>Use the sea day for the <strong>specialty restaurant</strong> you skipped</li>
+        <li>Long brunch, then light dinner before Naples early call</li>
+        <li>Room-service breakfast if you want a slow morning</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li>Pack bags early for disembark two mornings later</li>
+        <li>Confirm <strong>Naples tour / Pompeii</strong> timing tonight</li>
+        <li>Sunset on deck — last Adriatic evening vibe</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -737,7 +980,23 @@ footer::before {
         title="Naples cruise port"></iframe>
       <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Stazione+Marittima+Napoli" target="_blank" rel="noopener">Google Maps · Naples port</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Pompeii+Archaeological+Park" target="_blank" rel="noopener">Pompeii</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Positano" target="_blank" rel="noopener">Positano</a></div>
     </div>
-  </div>
+<!-- tips:naples -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li><strong>Pizza Napoletana</strong> — Margherita or Marinara from a classic oven</li>
+        <li><strong>Sfogliatella</strong> + espresso for breakfast fuel</li>
+        <li><strong>Fried pizza</strong> (pizza fritta) as a street snack</li>
+        <li>Amalfi: <strong>limoncello</strong> / lemon granita if you reach the coast</li>
+        <li><strong>Ragù napoletano</strong> if you stay in the city for lunch</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li>Prioritize <strong>2–3 stops max</strong> (Pompeii + Sorrento OR Amalfi — not everything)</li>
+        <li>Pompeii: water, shade, good shoes; skip midday if heat is brutal</li>
+        <li>Amalfi roads are slow — build a fat return buffer</li>
+        <li>All-aboard discipline — last port night before 5 am arrival</li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -767,7 +1026,19 @@ footer::before {
         title="Civitavecchia disembark"></iframe>
       <div class="map-links"><a href="https://www.google.com/maps/search/?api=1&amp;query=Civitavecchia+cruise+terminal" target="_blank" rel="noopener">Google Maps · Civitavecchia cruise terminal</a></div>
     </div>
-  </div>
+<!-- tips:home -->
+    <div class="local-tips">
+      <div class="tip-col food"><h3>Must-try</h3><ul>
+        <li>Airport espresso + a last <strong>cornetto / pastry</strong> before the long haul</li>
+        <li>Keep snacks in the carry-on for the U.S. connection</li>
+      </ul></div>
+      <div class="tip-col miss"><h3>Don't miss</h3><ul>
+        <li>Ship arrives <strong>5:00 am</strong> — bags out the night before</li>
+        <li>~60–90+ min to FCO in traffic; build lag for disembark waves</li>
+        <li>Confirm flight records <strong>G8NWCX · G85YOM · H3UD5Y</strong></li>
+      </ul></div>
+    </div>
+</div>
 </div>
 </section>
 
@@ -778,5 +1049,37 @@ footer::before {
   <p style="margin-top:1rem"><a href="#overview">Back to top</a> · Open locally with <span class="mono">python -m http.server</span> (see README).</p>
 </footer>
 </div>
+
+<script>
+(function () {
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function render(el, ms) {
+    if (ms <= 0) {
+      el.innerHTML = '<div class="cd-done">We’re there ✦</div>';
+      return;
+    }
+    var s = Math.floor(ms / 1000);
+    var d = Math.floor(s / 86400); s -= d * 86400;
+    var h = Math.floor(s / 3600); s -= h * 3600;
+    var m = Math.floor(s / 60); s -= m * 60;
+    el.innerHTML =
+      '<div class="cd-unit"><b>' + d + '</b><i>days</i></div>' +
+      '<div class="cd-unit"><b>' + pad(h) + '</b><i>hrs</i></div>' +
+      '<div class="cd-unit"><b>' + pad(m) + '</b><i>min</i></div>' +
+      '<div class="cd-unit"><b>' + pad(s) + '</b><i>sec</i></div>';
+  }
+  function tick() {
+    document.querySelectorAll(".cd-card[data-target]").forEach(function (card) {
+      var target = new Date(card.getAttribute("data-target")).getTime();
+      var slot = card.querySelector("[data-cd]");
+      if (!slot) return;
+      render(slot, target - Date.now());
+    });
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+
 </body>
 </html>
