@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jenson Europe 2027 — Celebrity Ascent Itinerary</title>
+<style>
+:root {
+  --bg: #0c1117;
+  --bg2: #141c26;
+  --card: #1a2433;
+  --line: #2a3a4f;
+  --text: #e8eef6;
+  --muted: #9aacbf;
+  --gold: #c9a45c;
+  --gold2: #e0c080;
+  --teal: #3db8a8;
+  --booked: #2ecc71;
+  --hold: #f0b429;
+  --tbd: #8b9bb0;
+  --alert: #e85d5d;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--sans); line-height: 1.55;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 10% -10%, #1a2a3d 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, #1e1830 0%, transparent 50%);
+}
+a { color: var(--gold2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+/* NAV */
+.topnav {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(14px);
+  background: rgba(12,17,23,0.88);
+  border-bottom: 1px solid var(--line);
+}
+.topnav-inner {
+  max-width: 1080px; margin: 0 auto; padding: .7rem 1.25rem;
+  display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center;
+}
+.brand { font-family: var(--serif); color: var(--gold); font-weight: 600; letter-spacing: .02em; margin-right: auto; }
+.topnav a.navlink {
+  color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
+  text-decoration: none; white-space: nowrap;
+}
+.topnav a.navlink:hover { color: var(--gold2); }
+
+/* HERO */
+.hero {
+  padding: 3.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2rem;
+}
+.hero .kicker {
+  color: var(--teal); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase;
+}
+.hero h1 {
+  font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 5vw, 3.1rem);
+  margin: .4rem 0 .6rem; line-height: 1.15; color: #f5f0e6;
+}
+.hero .sub { color: var(--muted); font-size: 1.05rem; max-width: 42rem; }
+.meta-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+.chip {
+  border: 1px solid var(--line); background: var(--bg2);
+  padding: .35rem .7rem; border-radius: 999px; font-size: .78rem; color: var(--muted);
+}
+.chip strong { color: var(--gold2); font-weight: 600; }
+.alert-banner {
+  margin-top: 1.25rem; padding: .9rem 1.1rem; border-radius: 10px;
+  background: rgba(232,93,93,.12); border: 1px solid rgba(232,93,93,.45);
+  color: #ffc9c9; font-size: .95rem;
+}
+.alert-banner strong { color: #fff; }
+
+/* SECTIONS */
+section.day {
+  margin: 2.5rem 0; padding: 0; scroll-margin-top: 4.5rem;
+}
+.day-card {
+  background: linear-gradient(180deg, var(--card), #151d29);
+  border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+.day-head {
+  padding: 1.25rem 1.4rem 1rem;
+  display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-start;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,.02);
+}
+.day-head h2 {
+  font-family: var(--serif); font-size: 1.55rem; margin: 0; flex: 1 1 220px;
+  color: #f3efe6;
+}
+.day-date { color: var(--teal); font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; width: 100%; }
+.badges { display: flex; flex-wrap: wrap; gap: .4rem; }
+.badge {
+  font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  padding: .28rem .55rem; border-radius: 6px; border: 1px solid transparent;
+}
+.badge.booked { background: rgba(46,204,113,.15); color: var(--booked); border-color: rgba(46,204,113,.35); }
+.badge.hold { background: rgba(240,180,41,.14); color: var(--hold); border-color: rgba(240,180,41,.35); }
+.badge.tbd { background: rgba(139,155,176,.12); color: var(--tbd); border-color: rgba(139,155,176,.3); }
+.badge.alert { background: rgba(232,93,93,.15); color: #ff8f8f; border-color: rgba(232,93,93,.4); }
+
+.day-body { padding: 1.25rem 1.4rem 1.5rem; }
+.blurb { color: #c5d0dc; margin: 0 0 1rem; }
+.grid2 {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+@media (max-width: 780px) { .grid2 { grid-template-columns: 1fr; } }
+.photo {
+  margin: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
+  background: #0a0e14;
+}
+.photo img { display: block; width: 100%; height: 220px; object-fit: cover; }
+.photo figcaption {
+  font-size: .72rem; color: var(--muted); padding: .55rem .7rem; line-height: 1.35;
+  border-top: 1px solid var(--line);
+}
+.details {
+  margin-top: 1rem; padding: 1rem 1.1rem; border-radius: 12px;
+  background: rgba(0,0,0,.25); border: 1px solid var(--line);
+}
+.details h3 {
+  margin: 0 0 .55rem; font-size: .75rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gold);
+}
+.details ul { margin: 0; padding-left: 1.1rem; color: #c8d3df; }
+.details li { margin: .25rem 0; }
+.details code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86em; color: #e6d5a8; }
+
+.mapbox {
+  margin-top: 1rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
+  background: #0a0e14;
+}
+.mapbox iframe { display: block; width: 100%; height: 260px; border: 0; filter: grayscale(.2) contrast(1.05); }
+.map-links { font-size: .82rem; padding: .55rem .8rem; color: var(--muted); border-top: 1px solid var(--line); }
+
+/* Ship */
+.ship-hero img { width: 100%; max-height: 360px; object-fit: cover; display: block; }
+.ship-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .75rem; margin: 1rem 0; }
+.fact {
+  background: rgba(0,0,0,.28); border: 1px solid var(--line); border-radius: 10px; padding: .8rem .9rem;
+}
+.fact .lbl { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.fact .val { color: var(--gold2); font-family: var(--serif); font-size: 1.05rem; margin-top: .2rem; }
+
+footer {
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: .8rem;
+}
+.toc {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .5rem; margin: 1.5rem 0 0;
+}
+.toc a {
+  display: block; padding: .65rem .8rem; border-radius: 10px;
+  background: var(--bg2); border: 1px solid var(--line); color: var(--text);
+  text-decoration: none; font-size: .88rem;
+}
+.toc a:hover { border-color: var(--gold); color: var(--gold2); }
+.toc a span { display: block; color: var(--muted); font-size: .72rem; margin-top: .15rem; }
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="topnav-inner">
+  <div class="brand">Jenson · Europe 2027</div>
+  <a class="navlink" href="#overview">Overview</a>
+  <a class="navlink" href="#ship">Ship</a>
+  <a class="navlink" href="#london">London</a>
+  <a class="navlink" href="#rome">Rome</a>
+  <a class="navlink" href="#embark">Embark</a>
+  <a class="navlink" href="#messina">Messina</a>
+  <a class="navlink" href="#sea1">Sea</a>
+  <a class="navlink" href="#katakolon">Olympia</a>
+  <a class="navlink" href="#corfu">Corfu</a>
+  <a class="navlink" href="#split">Split</a>
+  <a class="navlink" href="#bar">Kotor</a>
+  <a class="navlink" href="#dubrovnik">Dubrovnik</a>
+  <a class="navlink" href="#sea2">Sea</a>
+  <a class="navlink" href="#naples">Naples</a>
+  <a class="navlink" href="#home">Home</a>
+</div></nav>
+
+<div class="wrap">
+<header class="hero" id="overview">
+  <div class="kicker">Italy · Greece · Croatia · Montenegro</div>
+  <h1>Celebrity Ascent Itinerary</h1>
+  <p class="sub">Pre-cruise London &amp; Rome, then a 10-night Edge Series sailing — Fri May 28 through Mon Jun 14, <strong style="color:var(--gold2)">2027</strong>. Package <span class="mono">AT10M397</span>.</p>
+  <div class="meta-row">
+    <span class="chip"><strong>Embark</strong> Fri Jun 4 · Civitavecchia · 5:00 pm</span>
+    <span class="chip"><strong>Disembark</strong> Mon Jun 14 · 5:00 am</span>
+    <span class="chip"><strong>Bid</strong> 9491068</span>
+    <span class="chip"><strong>Rooms</strong> 11150 · 11148 · Deck 11</span>
+  </div>
+  <div class="alert-banner">
+    <strong>Action needed:</strong> Bill &amp; Kelli <strong>LHR → FCO</strong> is still <strong>unbooked</strong> (kids already on Delta). Book London→Rome before Jun 1.
+  </div>
+  <div class="toc">
+    <a href="#ship">Celebrity Ascent<span>Deck 11 · rooms · deck plans</span></a>
+    <a href="#london">May 28–31 · London<span>Conrad St James</span></a>
+    <a href="#rome">Jun 1–3 · Rome<span>Indigo · Vatican · Colosseum</span></a>
+    <a href="#embark">Jun 4 · Embark<span>Civitavecchia sail-away</span></a>
+    <a href="#messina">Jun 5 · Messina<span>Etna / Taormina</span></a>
+    <a href="#katakolon">Jun 7 · Katakolon<span>Ancient Olympia</span></a>
+    <a href="#corfu">Jun 8 · Corfu<span>Paleokastritsa</span></a>
+    <a href="#split">Jun 9 · Split<span>Blue Lagoon / Trogir</span></a>
+    <a href="#bar">Jun 10 · Bar<span>Historic Kotor</span></a>
+    <a href="#dubrovnik">Jun 11 · Dubrovnik<span>Walls &amp; cable car</span></a>
+    <a href="#naples">Jun 13 · Naples<span>Pompeii / Amalfi</span></a>
+    <a href="#home">Jun 14 · Home<span>Flights G8NWCX · G85YOM · H3UD5Y</span></a>
+  </div>
+</header>
+
+<!-- SHIP -->
+<section class="day" id="ship">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Ship · Edge Series</div>
+    <h2>Celebrity Ascent</h2>
+    <div class="badges"><span class="badge booked">Booked</span></div>
+  </div>
+  <figure class="photo ship-hero" style="border:0;border-radius:0;border-bottom:1px solid var(--line)">
+    <img src="images/celebrity-ascent.jpg" alt="Celebrity Ascent in Piraeus, June 2024" />
+    <figcaption>Celebrity Ascent — Piraeus, June 2024. Wikimedia Commons · ND44 / Sakis Antoniou · CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Celebrity_Ascent_-_Le_Pir%C3%A9e_-_June_2024.jpg">source</a></figcaption>
+  </figure>
+  <div class="day-body">
+    <p class="blurb">Edge Series ship inaugurated Nov 29, 2023 (~3,260 double occupancy). Signature spaces: Magic Carpet, Rooftop Garden, Sunset Bar, The Retreat. Ten-night <em>Italy, Greece &amp; Croatia</em> from Rome (Civitavecchia) — package <span class="mono">AT10M397</span>, sail date 2027-06-04.</p>
+    <div class="ship-facts">
+      <div class="fact"><div class="lbl">Room · Bill &amp; Kelli</div><div class="val">11150 · Deck 11</div></div>
+      <div class="fact"><div class="lbl">Room · Kids</div><div class="val">11148 · Deck 11</div></div>
+      <div class="fact"><div class="lbl">Kids conf</div><div class="val">#0931851</div></div>
+      <div class="fact"><div class="lbl">Booking bid</div><div class="val">9491068</div></div>
+    </div>
+    <div class="details">
+      <h3>Deck plans (official only)</h3>
+      <ul>
+        <li><a href="https://www.celebritycruises.com/cruise-ships/celebrity-ascent/deck-plans?profile=2362&amp;deck=11&amp;cabin=11150" target="_blank" rel="noopener">Interactive deck plan · cabin 11150 (Deck 11)</a></li>
+        <li><a href="https://www.celebritycruises.com/cruise-ships/celebrity-ascent/deck-plans?profile=2362&amp;deck=11&amp;cabin=11148" target="_blank" rel="noopener">Interactive deck plan · cabin 11148 (Deck 11)</a></li>
+        <li><a href="https://www.celebritycruises.com/cruise-ships/celebrity-ascent/deck-plans?profile=2362&amp;deck=11" target="_blank" rel="noopener">Deck 11 overview</a> · <a href="https://www.celebritycruises.com/content/dam/celebrity/pdf/deck-plan-/ascent/CEL_AscentDecks_2362.pdf" target="_blank" rel="noopener">Official PDF deck plans</a></li>
+        <li>Map UI places these in the Concierge Class area of Deck 11; <strong>exact fare/category code not confirmed</strong> from public sources — check your booking.</li>
+        <li>Ship overview: <a href="https://www.celebritycruises.com/cruise-ships/celebrity-ascent" target="_blank" rel="noopener">celebritycruises.com/…/celebrity-ascent</a></li>
+        <li>Itinerary: <a href="https://www.celebritycruises.com/itinerary/10-night-italy-greece-croatia-cruise-from-rome-civitavecchia-on-ascent-AT10M397?packageCode=AT10M397&amp;sailDate=2027-06-04" target="_blank" rel="noopener">AT10M397 · 2027-06-04</a></li>
+        <li>Post-booking explorer: <a href="https://www.celebritycruises.com/post-booking/explore-itinerary?bid=9491068&amp;sdt=2027-06-04&amp;scd=AT&amp;lnm=JENSON&amp;gic=true" target="_blank" rel="noopener">bid 9491068</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- LONDON DEPART -->
+<section class="day" id="depart">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Fri May 28, 2027 · Pre-cruise</div>
+    <h2>Spokane → London</h2>
+    <div class="badges"><span class="badge booked">Booked</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Long-haul day west-to-east: Alaska + British Airways into London for the Conrad St James weekend. Pack layers — May evenings in Westminster are cool and late-sunset.</p>
+    <div class="details">
+      <h3>Flights &amp; hotel</h3>
+      <ul>
+        <li>Alaska <span class="mono">YZIJYD</span> + British Airways <span class="mono">XMUW9P</span> → London</li>
+        <li>Conrad London St James confirmation <span class="mono">#3484775280</span></li>
+        <li>22–28 Broadway, London SW1H 0BH · across from St James’s Park Underground</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="london">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Sat–Mon May 29–31, 2027 · London</div>
+    <h2>Westminster &amp; St James</h2>
+    <div class="badges"><span class="badge booked">Hotel booked</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Westminster and St James put you in walking distance of Big Ben, Westminster Abbey, St James’s Park, and Buckingham Palace—classic London power-corridor vibes with parks and river views rather than nightlife. The Conrad sits across from St James’s Park Underground, so day trips (Tower Bridge, museums, West End) are easy without fighting traffic. Early-summer evenings are long; a Thames-side walk at blue hour is the simplest “wow” moment.</p>
+    <div class="grid2">
+      <figure class="photo">
+        <img src="images/london-westminster.jpg" alt="Palace of Westminster at night" />
+        <figcaption>Palace of Westminster / Big Ben at night — Diliff · CC BY-SA 2.5 · <a href="https://commons.wikimedia.org/wiki/File:Palace_of_Westminster,_London_-_Feb_2007.jpg">Commons</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/london-tower-bridge.jpg" alt="Tower Bridge from Shad Thames" />
+        <figcaption>Tower Bridge from Shad Thames — Colin · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Tower_Bridge_from_Shad_Thames.jpg">Commons</a></figcaption>
+      </figure>
+    </div>
+    <div class="details">
+      <h3>Confirmed</h3>
+      <ul>
+        <li>Conrad London St James <span class="mono">#3484775280</span></li>
+        <li>Kids depart for Rome Tue Jun 1 on Delta (Asher/Alexis <span class="mono">HV968Y</span>, Brooklyn <span class="mono">HA69VD</span>)</li>
+        <li><strong style="color:#ff8f8f">Bill &amp; Kelli LHR→FCO: UNBOOKED — book before Jun 1</strong></li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-0.145%2C51.495%2C-0.125%2C51.505&amp;layer=mapnik&amp;marker=51.4997%2C-0.1337"
+        title="Conrad London St James map"></iframe>
+      <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Conrad+London+St.+James,+22-28+Broadway,+London+SW1H+0BH" target="_blank" rel="noopener">Google Maps · Conrad St James</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="rome">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Tue–Thu Jun 1–3, 2027 · Rome</div>
+    <h2>Hotel Indigo St. George</h2>
+    <div class="badges"><span class="badge booked">Hotel booked</span><span class="badge booked">Tours booked</span><span class="badge alert">LHR→FCO TBD</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">The Indigo sits on historic Via Giulia near Castel Sant’Angelo—handy for Vatican Museums / St Peter’s (roughly 15–20 minutes on foot) and the Centro Storico. Expect a quieter Renaissance street vibe by night, then dense sightseeing by day. National holiday note on Jun 2 for the Vatican walk.</p>
+    <div class="grid2">
+      <figure class="photo">
+        <img src="images/rome-indigo-area.jpg" alt="Castel Sant'Angelo at night" />
+        <figcaption>Castel Sant’Angelo at night — Livioandronico2013 · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Castel_Sant%27Angelo_(Rome)_at_night.jpg">Commons</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/rome-st-peters.jpg" alt="St Peter's Square, Vatican" />
+        <figcaption>St Peter’s Square — Diliff · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:St_Peter%27s_Square,_Vatican_City_-_April_2007.jpg">Commons</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/rome-vatican.jpg" alt="Vatican Museums spiral staircase" />
+        <figcaption>Vatican Museums spiral — Colin · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Vatican_Museums_Spiral_Staircase_2012.jpg">Commons</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/rome-colosseum.jpg" alt="Colosseum at dusk" />
+        <figcaption>Colosseum at dusk — Diliff · CC BY-SA 2.5 · <a href="https://commons.wikimedia.org/wiki/File:Colosseum_in_Rome,_Italy_-_April_2007.jpg">Commons</a></figcaption>
+      </figure>
+    </div>
+    <div class="details">
+      <h3>Day-by-day · confirmations only</h3>
+      <ul>
+        <li><strong>Tue Jun 1</strong> — Arrive Rome · Hotel Indigo St. George <span class="mono">#69797148</span> &amp; <span class="mono">#82694461</span> · Gallo golf cart <span class="mono">GAL-99713891</span> (5:30 pm)</li>
+        <li><strong>Wed Jun 2</strong> — Vatican Express · Walks of Italy <span class="mono">BG28X8TN</span> (national holiday)</li>
+        <li><strong>Thu Jun 3</strong> — Colosseum early entry + super sites · LIV <span class="mono">#704038</span></li>
+        <li>Kids flights: Asher/Alexis Delta <span class="mono">HV968Y</span> · Brooklyn <span class="mono">HA69VD</span></li>
+        <li><strong style="color:#ff8f8f">Bill/Kelli LHR→FCO still needs booking</strong></li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=12.455%2C41.888%2C12.478%2C41.905&amp;layer=mapnik&amp;marker=41.897%2C12.466"
+        title="Hotel Indigo Rome St George area"></iframe>
+      <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Indigo+Rome+-+St.+George,+Via+Giulia+62,+Rome" target="_blank" rel="noopener">Google Maps · Indigo St. George</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="embark">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Fri Jun 4, 2027 · Embark · Departs 5:00 pm</div>
+    <h2>Civitavecchia → Sail Away</h2>
+    <div class="badges"><span class="badge booked">Cruise booked</span><span class="badge tbd">Transfer TBD</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Civitavecchia is Rome’s working cruise gateway—less “destination,” more efficient embarkation. Michelangelo Fort and the harborfront are pleasant if you have spare hours, but most guests treat the day as luggage + check-in + sail-away. Celebrity lists departure at <strong>5:00 pm</strong>; arrive with buffer for security and boarding waves. Transfer from Rome is ~70–80 km / ~75–90 minutes by car.</p>
+    <div class="grid2">
+      <figure class="photo">
+        <img src="images/civitavecchia.jpg" alt="Forte Michelangelo, Civitavecchia" />
+        <figcaption>Forte Michelangelo, Civitavecchia — Mariapia Statile · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Il_Forte_Michelangelo_di_Civitavecchia.jpg">Commons</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/celebrity-ascent.jpg" alt="Celebrity Ascent" />
+        <figcaption>Celebrity Ascent exterior — ND44 / Sakis Antoniou · CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Celebrity_Ascent_-_Le_Pir%C3%A9e_-_June_2024.jpg">Commons</a></figcaption>
+      </figure>
+    </div>
+    <div class="details">
+      <h3>Boarding</h3>
+      <ul>
+        <li>Celebrity Ascent bid <span class="mono">9491068</span> · package <span class="mono">AT10M397</span></li>
+        <li>Rooms <span class="mono">11150</span> (Bill/Kelli) &amp; <span class="mono">11148</span> (kids) · Deck 11</li>
+        <li>Sail <strong>5:00 pm</strong> · Port Mobility / Largo della Pace hub for shuttles</li>
+        <li>Hotel→port transfer: confirm with Indigo concierge (estimate on sheet; not locked)</li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=11.775%2C42.085%2C11.82%2C42.115&amp;layer=mapnik&amp;marker=42.093%2C11.792"
+        title="Civitavecchia port map"></iframe>
+      <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Largo+della+Pace,+Civitavecchia" target="_blank" rel="noopener">Google Maps · Largo della Pace</a> · <a href="https://civitavecchia.portmobility.it/en/rct-cruise-terminal-port-civitavecchia" target="_blank" rel="noopener">Port Mobility</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="messina">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Sat Jun 5, 2027 · Docked 10:30 am – 8:30 pm</div>
+    <h2>Messina · Etna &amp; Taormina</h2>
+    <div class="badges"><span class="badge hold">Hold $795</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Messina is the Strait’s gateway—useful as a launchpad rather than a full-day town. Classic shore day: cliff-top <strong>Taormina</strong> (Greek theatre, Corso Umberto, Etna views) and/or <strong>Mount Etna</strong> lava landscapes. Expect a scenic but time-boxed day; the harbor itself is rebuilt/modern after earthquakes, with the Duomo and astronomical clock as the in-town highlight if you stay local.</p>
+    <div class="grid2">
+      <figure class="photo">
+        <img src="images/messina-taormina-etna.jpg" alt="Mount Etna from Taormina Piazza IX Aprile" />
+        <figcaption>Etna from Piazza IX Aprile, Taormina — Evan Erickson · Public domain · <a href="https://commons.wikimedia.org/wiki/File:Taormina-Piazza_IX_Aprile.JPG">Commons</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/messina-harbour.jpg" alt="Messina harbour" />
+        <figcaption>Messina harbour panorama — panoramio / Commons · <a href="https://commons.wikimedia.org/wiki/File:Vos_et_Ipsam_civitatem_benedicimus_-_Messina_-_panoramio.jpg">Commons</a></figcaption>
+      </figure>
+    </div>
+    <div class="details">
+      <h3>Shore plan</h3>
+      <ul>
+        <li>Private Etna/Taormina · ItalyTours.EU · <strong>HOLD $795</strong> (email hold — not marked fully paid on sheet)</li>
+        <li>Celebrity timing: docked <strong>10:30 am – 8:30 pm</strong> · typically alongside (not tender)</li>
+        <li>Taormina ~1–1.5 hr each way depending on traffic</li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=15.54%2C38.18%2C15.58%2C38.21&amp;layer=mapnik&amp;marker=38.193%2C15.56"
+        title="Messina cruise port"></iframe>
+      <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Messina+cruise+terminal" target="_blank" rel="noopener">Google Maps · Messina cruise terminal</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Teatro+Antico+di+Taormina" target="_blank" rel="noopener">Taormina theatre</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="sea1">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Sun Jun 6, 2027 · At sea</div>
+    <h2>Mediterranean Sea Day</h2>
+    <div class="badges"><span class="badge tbd">Cabana TBD</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">A classic Ionian/central Med transit day—blue water, soft horizons, and ship time. Use it to reset after Sicily: pool/Solarium, Rooftop Garden, spa, or a long lunch. On Ascent, signature outward-facing spaces (Magic Carpet, Sunset Bar, Resort Deck) are the scenic default when there’s no port clock to chase.</p>
+    <figure class="photo">
+      <img src="images/celebrity-ascent.jpg" alt="Celebrity Ascent at sea vibe" style="height:280px" />
+      <figcaption>Celebrity Ascent — Wikimedia Commons · ND44 / Sakis Antoniou · CC BY 4.0</figcaption>
+    </figure>
+    <div class="details">
+      <h3>Notes</h3>
+      <ul>
+        <li>Half-day cabana: on sheet as question / ~$300 placeholder — <strong>not booked</strong></li>
+        <li>No tender/dock · optional Wi‑Fi / beverage / specialty packages are upsells only</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="katakolon">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Mon Jun 7, 2027 · Docked 8:00 am – 5:00 pm</div>
+    <h2>Katakolon · Ancient Olympia</h2>
+    <div class="badges"><span class="badge hold">Hold $820</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Tiny Ionian harbor town that exists largely for cruise guests—cafés on the waterfront, then a short inland transfer to <strong>Ancient Olympia</strong>, birthplace of the Olympic Games. The stadium starting blocks, Temple of Hera, and museum sculptures are the payoff; the vibe is dusty stone, olive hills, and “standing where athletes stood in 776 BC.”</p>
+    <figure class="photo">
+      <img src="images/olympia.jpg" alt="Temple of Hera at Olympia" style="height:280px" />
+      <figcaption>Temple of Hera, Olympia — Carole Raddato · CC BY-SA 2.0 · <a href="https://commons.wikimedia.org/wiki/File:Restored_ruins_of_the_Temple_of_Hera,_ancient_Doric_Greek_temple_at_Olympia,_Greece_(16189637837).jpg">Commons</a></figcaption>
+    </figure>
+    <div class="details">
+      <h3>Shore plan</h3>
+      <ul>
+        <li>Private Olympia · Niki Olympic Tours · <strong>HOLD $820</strong></li>
+        <li>Celebrity: docked <strong>8:00 am – 5:00 pm</strong> · village walkable; Olympia ~25–40 min by road</li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=21.31%2C37.63%2C21.34%2C37.66&amp;layer=mapnik&amp;marker=37.648%2C21.319"
+        title="Katakolon port"></iframe>
+      <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Katakolo+cruise+port" target="_blank" rel="noopener">Google Maps · Katakolo</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Archaeological+Site+of+Olympia" target="_blank" rel="noopener">Ancient Olympia</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="corfu">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Tue Jun 8, 2027 · Docked 8:00 am – 6:00 pm</div>
+    <h2>Corfu · Paleokastritsa</h2>
+    <div class="badges"><span class="badge tbd">Candidate $685</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Corfu mixes Venetian fortresses and pastel lanes in UNESCO Old Town with postcard coves at <strong>Paleokastritsa</strong> (cliffs, monasteries, glass-clear water). The island feels greener and more “Ionian garden” than Cycladic whitewash. Best day split: morning Paleokastritsa boat/beach, afternoon Liston / Spianada / Old Fortress.</p>
+    <figure class="photo">
+      <img src="images/corfu-paleokastritsa.jpg" alt="Paleokastritsa panorama, Corfu" style="height:280px" />
+      <figcaption>Paleokastritsa from Bella Vista — Rob Hooft · CC BY-SA 2.5 · <a href="https://commons.wikimedia.org/wiki/File:Paleokastritsa-panorama-from-BellaVista.jpg">Commons</a></figcaption>
+    </figure>
+    <div class="details">
+      <h3>Shore plan</h3>
+      <ul>
+        <li>Paleokastritsa-style shore · Viator candidate · <strong>~$685</strong> — booking status unclear on sheet (TBD)</li>
+        <li>Celebrity: docked <strong>8:00 am – 6:00 pm</strong> at New Port · Paleokastritsa ~30–45 min by road</li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=19.90%2C39.61%2C19.94%2C39.64&amp;layer=mapnik&amp;marker=39.624%2C19.920"
+        title="Corfu New Port"></iframe>
+      <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Corfu+New+Port" target="_blank" rel="noopener">Google Maps · Corfu New Port</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Paleokastritsa+Corfu" target="_blank" rel="noopener">Paleokastritsa</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="split">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Wed Jun 9, 2027 · Docked 10:00 am – 7:00 pm</div>
+    <h2>Split · Blue Lagoon &amp; Trogir</h2>
+    <div class="badges"><span class="badge tbd">Candidate $300+</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Split is one of the Adriatic’s easiest walk-off ports: palm-lined <strong>Riva</strong> leads straight into living <strong>Diocletian’s Palace</strong>—Roman cellars, peristyle, and cafés inside a 4th-century retirement fortress. For a boat day, operators run <strong>Blue Lagoon</strong> swims plus UNESCO <strong>Trogir</strong>’s compact marble old town. Vibe: Roman stone + modern promenade energy.</p>
+    <div class="grid2">
+      <figure class="photo">
+        <img src="images/split-diocletian.jpg" alt="Split / Diocletian's Palace area" />
+        <figcaption>Split palace area — Berthold Werner · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Split_BW_2024-10-02_11-16-50.jpg">Commons</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/split-trogir.jpg" alt="Trogir Old Town" />
+        <figcaption>Trogir Old Town — Marija19th11 · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Trogir_Old_Town_(Croatia).jpg">Commons</a></figcaption>
+      </figure>
+    </div>
+    <div class="details">
+      <h3>Shore plan</h3>
+      <ul>
+        <li>Splitilicious Blue Lagoon / Trogir · Viator candidate · <strong>~$300–415</strong> (sheet ~$300) — status TBD</li>
+        <li>Also DIY Diocletian’s Palace on foot from the pier (~5–10 min)</li>
+        <li>Celebrity: docked <strong>10:00 am – 7:00 pm</strong> · usually alongside near the Riva</li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=16.43%2C43.50%2C16.45%2C43.515&amp;layer=mapnik&amp;marker=43.508%2C16.440"
+        title="Split Diocletian Palace"></iframe>
+      <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Diocletian%27s+Palace+Split" target="_blank" rel="noopener">Google Maps · Diocletian’s Palace</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Blue+Lagoon+Trogir" target="_blank" rel="noopener">Blue Lagoon</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="bar">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Thu Jun 10, 2027 · Docked 8:00 am – 6:00 pm</div>
+    <h2>Bar → Historic Kotor</h2>
+    <div class="badges"><span class="badge booked">Booked · Celebrity</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb"><strong>Bar</strong> is Montenegro’s main commercial seaport—sunny waterfront and olive country—but the scenic jackpot is the fjord-like <strong>Bay of Kotor</strong>. Historic Kotor’s walled lanes, cathedral square, and fortress stairs deliver the Venetian Adriatic postcard. Expect a coach day (~1.5–2+ hours each way depending on traffic).</p>
+    <div class="grid2">
+      <figure class="photo">
+        <img src="images/kotor.jpg" alt="Kotor Old Town" />
+        <figcaption>Kotor Old Town — Gzzz · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Kotor_old_town_3.JPG">Commons</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/bar-montenegro.jpg" alt="View from Old Bar, Montenegro" />
+        <figcaption>Panorama from Old Bar — MaGIc2laNTern · CC BY 3.0 · Wikimedia Commons</figcaption>
+      </figure>
+    </div>
+    <div class="details">
+      <h3>Shore plan</h3>
+      <ul>
+        <li><strong>BOOKED</strong> — Celebrity Historic Kotor excursion</li>
+        <li>Celebrity: docked at Bar <strong>8:00 am – 6:00 pm</strong> · industrial port; shuttle common to town “zero point”</li>
+        <li>Kotor is an excursion — not a walk from the pier</li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=19.08%2C42.08%2C19.12%2C42.11&amp;layer=mapnik&amp;marker=42.093%2C19.100"
+        title="Port of Bar Montenegro"></iframe>
+      <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Port+of+Bar+Montenegro" target="_blank" rel="noopener">Google Maps · Port of Bar</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Kotor+Old+Town" target="_blank" rel="noopener">Kotor Old Town</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="dubrovnik">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Fri Jun 11, 2027 · Docked 8:00 am – 6:00 pm</div>
+    <h2>Dubrovnik · Walls &amp; Cable Car</h2>
+    <div class="badges"><span class="badge tbd">DIY</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Dubrovnik’s limestone <strong>Old Town</strong> and circuit of <strong>city walls</strong> are the Adriatic’s headline act—terracotta roofs, cliff drops to the sea, and Stradun’s marble parade. The <strong>Srđ cable car</strong> buys the wide bay panorama when legs are done with stairs. Go early or late if possible; mid-day wall walks in June heat + ship crowds are intense.</p>
+    <figure class="photo">
+      <img src="images/dubrovnik-walls.jpg" alt="Dubrovnik Old Town and walls" style="height:300px" />
+      <figcaption>Dubrovnik Old Town — kallerna · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Dubrovnik_Old_Town_1.jpg">Commons</a></figcaption>
+    </figure>
+    <div class="details">
+      <h3>Shore plan</h3>
+      <ul>
+        <li>DIY: city walls, cable car, Game of Thrones photo spots — no paid tour confirmation on sheet</li>
+        <li>Celebrity: docked <strong>8:00 am – 6:00 pm</strong> at <strong>Gruž</strong> (~3 km from Old Town) — bus/taxi/shuttle to Pile Gate</li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=18.08%2C42.63%2C18.12%2C42.66&amp;layer=mapnik&amp;marker=42.641%2C18.110"
+        title="Dubrovnik Old Town"></iframe>
+      <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Port+of+Dubrovnik+Gru%C5%BE" target="_blank" rel="noopener">Google Maps · Gruž port</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Pile+Gate+Dubrovnik" target="_blank" rel="noopener">Pile Gate</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Dubrovnik+Cable+Car" target="_blank" rel="noopener">Cable car</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="sea2">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Sat Jun 12, 2027 · At sea</div>
+    <h2>Sea Day · Adriatic Transit</h2>
+    <div class="badges"><span class="badge tbd">Cabana TBD</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Second sea day — reset before Naples. Pool deck, spa, specialty dining, or a quiet corner of the Rooftop Garden. Same cabana question as Jun 6 if you still want a half-day hold on a daybed.</p>
+    <figure class="photo">
+      <img src="images/celebrity-ascent.jpg" alt="Celebrity Ascent" style="height:240px" />
+      <figcaption>Celebrity Ascent — Wikimedia Commons · CC BY 4.0</figcaption>
+    </figure>
+    <div class="details">
+      <h3>Notes</h3>
+      <ul><li>Cabana still <strong>TBD / not booked</strong> on planner sheet</li></ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="naples">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Sun Jun 13, 2027 · Docked 7:00 am – 6:00 pm</div>
+    <h2>Naples · Pompeii / Sorrento / Amalfi</h2>
+    <div class="badges"><span class="badge hold">Hold $1,025</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Naples is loud, delicious, and Vesuvius-framed—pizza homeland and gateway to <strong>Pompeii</strong>’s frozen Roman streets. A classic coast day stacks ruins with <strong>Sorrento</strong> cliffs and the hairpin drama of <strong>Amalfi / Positano</strong>; it’s a long, scenic grind, so prioritize 2–3 stops max. Build generous return buffer before all-aboard.</p>
+    <div class="grid2">
+      <figure class="photo">
+        <img src="images/pompeii-vesuvius.jpg" alt="Pompeii Forum with Vesuvius" />
+        <figcaption>Pompeii Forum + Vesuvius — Commonists · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Forum_(Pompeii)_and_the_Vesuvio.jpg">Commons</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/amalfi-positano.jpg" alt="Positano on the Amalfi Coast" />
+        <figcaption>Positano — Bernard Gagnon · CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Positano_(Italy)_04.jpg">Commons</a></figcaption>
+      </figure>
+    </div>
+    <div class="details">
+      <h3>Shore plan</h3>
+      <ul>
+        <li>Private Pompeii / Sorrento / Amalfi · ItalyTours.EU · <strong>HOLD $1,025</strong></li>
+        <li>Celebrity: docked <strong>7:00 am – 6:00 pm</strong> at Stazione Marittima · Amalfi roads are slow</li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=14.25%2C40.83%2C14.28%2C40.85&amp;layer=mapnik&amp;marker=40.840%2C14.260"
+        title="Naples cruise port"></iframe>
+      <div class="map-links">OpenStreetMap · <a href="https://www.google.com/maps/search/?api=1&amp;query=Stazione+Marittima+Napoli" target="_blank" rel="noopener">Google Maps · Naples port</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Pompeii+Archaeological+Park" target="_blank" rel="noopener">Pompeii</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Positano" target="_blank" rel="noopener">Positano</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="day" id="home">
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-date">Mon Jun 14, 2027 · Arrive 5:00 am · Disembark</div>
+    <h2>Civitavecchia → Home</h2>
+    <div class="badges"><span class="badge booked">Flights booked</span></div>
+  </div>
+  <div class="day-body">
+    <p class="blurb">Same port as embarkation, different energy: early bags, immigration/security flow, and transfers to FCO. Celebrity lists arrival <strong>5:00 am</strong>—plan airport connections with lag for disembark waves and ~60–90 minutes to Fiumicino in normal traffic.</p>
+    <figure class="photo">
+      <img src="images/civitavecchia.jpg" alt="Civitavecchia Forte Michelangelo" style="height:240px" />
+      <figcaption>Forte Michelangelo, Civitavecchia — Mariapia Statile · CC BY-SA 4.0 · Commons</figcaption>
+    </figure>
+    <div class="details">
+      <h3>Flights home</h3>
+      <ul>
+        <li>Delta / homebound refs: <span class="mono">G8NWCX</span> · <span class="mono">G85YOM</span> · <span class="mono">H3UD5Y</span></li>
+        <li>Allow buffer after 5:00 am arrival for luggage &amp; transfer to FCO</li>
+      </ul>
+    </div>
+    <div class="mapbox">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=11.775%2C42.085%2C11.82%2C42.115&amp;layer=mapnik&amp;marker=42.093%2C11.792"
+        title="Civitavecchia disembark"></iframe>
+      <div class="map-links"><a href="https://www.google.com/maps/search/?api=1&amp;query=Civitavecchia+cruise+terminal" target="_blank" rel="noopener">Google Maps · Civitavecchia cruise terminal</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <p><strong>Jenson family · Europe 2027</strong> · Celebrity Ascent package <span class="mono">AT10M397</span> · sail 2027-06-04 · bid 9491068.</p>
+  <p>Photos from Wikimedia Commons (see captions). Port times from Celebrity / CruiseTimetables. Deck plans linked to official Celebrity interactive maps — rooms 11150 &amp; 11148 on Deck 11; exact fare category not asserted.</p>
+  <p>Confirmation numbers shown are only those provided on the planner sheet. No invented bookings.</p>
+  <p style="margin-top:1rem"><a href="#overview">Back to top</a> · Open locally with <span class="mono">python -m http.server</span> (see README).</p>
+</footer>
+</div>
+</body>
+</html>
