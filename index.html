@@ -229,41 +229,63 @@ footer::before {
 
 /* COUNTDOWN */
 .countdown-bar {
-  position: sticky; top: 52px; z-index: 40;
+  position: sticky; top: 48px; z-index: 40;
   background: linear-gradient(180deg, #f8f1e6, #f3eadc);
   border-bottom: 1px solid var(--line2);
-  padding: .85rem 1.25rem;
-  box-shadow: 0 6px 18px rgba(74, 52, 32, 0.06);
+  padding: .45rem .75rem;
+  box-shadow: 0 4px 12px rgba(74, 52, 32, 0.05);
 }
 .countdown-inner {
   max-width: 1080px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr; gap: .75rem 1.25rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: .4rem .75rem;
 }
-@media (max-width: 720px) { .countdown-inner { grid-template-columns: 1fr; } }
 .cd-card {
-  display: flex; flex-wrap: wrap; align-items: center; gap: .55rem 1rem;
-  padding: .7rem .95rem; border-radius: 14px;
+  display: flex; flex-wrap: nowrap; align-items: center; gap: .4rem .55rem;
+  padding: .4rem .55rem; border-radius: 10px;
   background: var(--paper); border: 1px solid var(--line);
-  box-shadow: 0 1px 0 rgba(255,255,255,.7) inset;
 }
 .cd-label {
   font-family: var(--serif); font-weight: 600; color: var(--wine);
-  font-size: 1.05rem; min-width: 7.5rem;
+  font-size: .92rem; line-height: 1.15; min-width: 0; flex: 1 1 auto;
 }
-.cd-label span { display: block; font-family: var(--sans); font-size: .68rem; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: .1rem; }
-.cd-digits { display: flex; flex-wrap: wrap; gap: .35rem; margin-left: auto; min-height: 3.2rem; align-items: center; }
+.cd-label span {
+  display: block; font-family: var(--sans); font-size: .58rem; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: .05rem;
+}
+.cd-when { display: block; }
+.cd-digits {
+  display: flex; flex-wrap: nowrap; gap: .2rem; margin-left: auto;
+  align-items: center; flex: 0 0 auto;
+}
 .cd-unit {
-  text-align: center; min-width: 3.1rem; padding: .35rem .4rem;
-  background: #f3eadc; border: 1px solid var(--line); border-radius: 10px;
+  text-align: center; min-width: 2.15rem; padding: .18rem .22rem;
+  background: #f3eadc; border: 1px solid var(--line); border-radius: 7px;
 }
 .cd-unit b {
-  display: block; font-family: var(--serif); font-size: 1.35rem; color: var(--ink); line-height: 1.1;
+  display: block; font-family: var(--serif); font-size: 1rem; color: var(--ink); line-height: 1.05;
 }
 .cd-unit i {
-  font-style: normal; font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+  font-style: normal; font-size: .52rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted);
 }
-.cd-done { color: var(--olive); font-weight: 600; font-size: .9rem; margin-left: auto; }
+.cd-done { color: var(--olive); font-weight: 600; font-size: .8rem; margin-left: auto; white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .countdown-bar { padding: .35rem .55rem; top: 44px; }
+  .countdown-inner { grid-template-columns: 1fr; gap: .3rem; }
+  .cd-card { padding: .32rem .45rem; gap: .35rem; }
+  .cd-label { font-size: .82rem; }
+  .cd-label > span:first-child { font-size: .52rem; }
+  .cd-unit { min-width: 1.85rem; padding: .12rem .15rem; border-radius: 6px; }
+  .cd-unit b { font-size: .92rem; }
+  .cd-unit i { font-size: .48rem; }
+  .cd-unit[data-u="sec"] { display: none; }
+}
+
+@media (max-width: 380px) {
+  .cd-label { max-width: 42%; }
+  .cd-unit { min-width: 1.65rem; }
+  .cd-unit b { font-size: .85rem; }
+}
 
 /* LOCAL TIPS */
 .local-tips {
@@ -313,11 +335,11 @@ footer::before {
 <div class="countdown-bar" id="countdowns">
   <div class="countdown-inner">
     <div class="cd-card" data-target="2027-05-28T00:00:00-07:00">
-      <div class="cd-label"><span>Trip start</span>May 28, 2027</div>
+      <div class="cd-label"><span>Trip start</span><span class="cd-when">May 28, 2027</span></div>
       <div class="cd-digits" data-cd></div>
     </div>
     <div class="cd-card" data-target="2027-06-04T17:00:00+02:00">
-      <div class="cd-label"><span>Cruise sail-away</span>Jun 4 · 5:00 pm Civitavecchia</div>
+      <div class="cd-label"><span>Cruise start</span><span class="cd-when">Jun 4 · 5pm</span></div>
       <div class="cd-digits" data-cd></div>
     </div>
   </div>
@@ -1079,10 +1101,10 @@ footer::before {
     var h = Math.floor(s / 3600); s -= h * 3600;
     var m = Math.floor(s / 60); s -= m * 60;
     el.innerHTML =
-      '<div class="cd-unit"><b>' + d + '</b><i>days</i></div>' +
-      '<div class="cd-unit"><b>' + pad(h) + '</b><i>hrs</i></div>' +
-      '<div class="cd-unit"><b>' + pad(m) + '</b><i>min</i></div>' +
-      '<div class="cd-unit"><b>' + pad(s) + '</b><i>sec</i></div>';
+      '<div class="cd-unit" data-u="day"><b>' + d + '</b><i>d</i></div>' +
+      '<div class="cd-unit" data-u="hr"><b>' + pad(h) + '</b><i>h</i></div>' +
+      '<div class="cd-unit" data-u="min"><b>' + pad(m) + '</b><i>m</i></div>' +
+      '<div class="cd-unit" data-u="sec"><b>' + pad(s) + '</b><i>s</i></div>';
   }
   function tick() {
     document.querySelectorAll(".cd-card[data-target]").forEach(function (card) {
