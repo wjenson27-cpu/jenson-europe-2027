@@ -229,9 +229,11 @@ footer::before {
 
 /* COUNTDOWN */
 .countdown-bar {
+  position: sticky; top: 52px; z-index: 40;
   background: linear-gradient(180deg, #f8f1e6, #f3eadc);
   border-bottom: 1px solid var(--line2);
   padding: .85rem 1.25rem;
+  box-shadow: 0 6px 18px rgba(74, 52, 32, 0.06);
 }
 .countdown-inner {
   max-width: 1080px; margin: 0 auto;
@@ -250,7 +252,7 @@ footer::before {
 }
 .cd-label span { display: block; font-family: var(--sans); font-size: .68rem; letter-spacing: .08em;
   text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: .1rem; }
-.cd-digits { display: flex; flex-wrap: wrap; gap: .35rem; margin-left: auto; }
+.cd-digits { display: flex; flex-wrap: wrap; gap: .35rem; margin-left: auto; min-height: 3.2rem; align-items: center; }
 .cd-unit {
   text-align: center; min-width: 3.1rem; padding: .35rem .4rem;
   background: #f3eadc; border: 1px solid var(--line); border-radius: 10px;
@@ -307,6 +309,20 @@ footer::before {
   <a class="navlink" href="#naples">Naples</a>
   <a class="navlink" href="#home">Home</a>
 </div></nav>
+
+<div class="countdown-bar" id="countdowns">
+  <div class="countdown-inner">
+    <div class="cd-card" data-target="2027-05-28T00:00:00-07:00">
+      <div class="cd-label"><span>Trip start</span>May 28, 2027</div>
+      <div class="cd-digits" data-cd></div>
+    </div>
+    <div class="cd-card" data-target="2027-06-04T17:00:00+02:00">
+      <div class="cd-label"><span>Cruise sail-away</span>Jun 4 · 5:00 pm Civitavecchia</div>
+      <div class="cd-digits" data-cd></div>
+    </div>
+  </div>
+</div>
+
 
 <div class="wrap">
 <header class="hero" id="overview">
