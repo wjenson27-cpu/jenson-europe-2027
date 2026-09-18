@@ -121,8 +121,6 @@ section.day {
   border: 1px solid var(--line2);
   border-radius: 18px; overflow: hidden;
   box-shadow: var(--shadow);
-  outline: 1px solid rgba(154, 115, 64, 0.18);
-  outline-offset: 3px;
 }
 .day-head {
   padding: 1.3rem 1.45rem 1.05rem;
@@ -141,7 +139,7 @@ section.day {
 }
 .badges { display: flex; flex-wrap: wrap; gap: .4rem; }
 .badge {
-  font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
   padding: .28rem .55rem; border-radius: 6px; border: 1px solid transparent;
 }
 .badge.booked { background: rgba(61,107,79,.12); color: var(--booked); border-color: rgba(61,107,79,.35); }
@@ -159,7 +157,7 @@ section.day {
   margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
   background: #e8ddd0;
 }
-.photo img { display: block; width: 100%; height: 230px; object-fit: cover; }
+.photo img { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; object-fit: cover; border-radius: 0; }
 .photo figcaption {
   font-size: .72rem; color: var(--muted); padding: .55rem .7rem; line-height: 1.35;
   border-top: 1px solid var(--line); background: #f7f0e6;
@@ -225,7 +223,7 @@ footer::before {
   box-shadow: 0 1px 0 rgba(255,255,255,.65) inset;
 }
 .toc a:hover { border-color: var(--terracotta); color: var(--wine); }
-.toc a span { display: block; color: var(--muted); font-size: .72rem; margin-top: .15rem; font-family: var(--sans); font-weight: 400; }
+.toc a span { display: block; color: var(--muted); font-size: .75rem; margin-top: .15rem; font-family: var(--sans); font-weight: 400; }
 
 /* COUNTDOWN */
 .countdown-bar {
@@ -249,7 +247,7 @@ footer::before {
   font-size: .92rem; line-height: 1.15; min-width: 0; flex: 1 1 auto;
 }
 .cd-label span {
-  display: block; font-family: var(--sans); font-size: .58rem; letter-spacing: .06em;
+  display: block; font-family: var(--sans); font-size: .6875rem; letter-spacing: .06em;
   text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: .05rem;
 }
 .cd-when { display: block; }
@@ -265,7 +263,7 @@ footer::before {
   display: block; font-family: var(--serif); font-size: 1rem; color: var(--ink); line-height: 1.05;
 }
 .cd-unit i {
-  font-style: normal; font-size: .52rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted);
+  font-style: normal; font-size: .6875rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted);
 }
 .cd-done { color: var(--olive); font-weight: 600; font-size: .8rem; margin-left: auto; white-space: nowrap; }
 
@@ -274,10 +272,10 @@ footer::before {
   .countdown-inner { grid-template-columns: 1fr; gap: .3rem; }
   .cd-card { padding: .32rem .45rem; gap: .35rem; }
   .cd-label { font-size: .82rem; }
-  .cd-label > span:first-child { font-size: .52rem; }
+  .cd-label > span:first-child { font-size: .6875rem; }
   .cd-unit { min-width: 1.85rem; padding: .12rem .15rem; border-radius: 6px; }
   .cd-unit b { font-size: .92rem; }
-  .cd-unit i { font-size: .48rem; }
+  .cd-unit i { font-size: .6875rem; }
   .cd-unit[data-u="sec"] { display: none; }
 }
 
@@ -309,27 +307,101 @@ footer::before {
 .tip-col li { margin: .32rem 0; font-size: .95rem; }
 .tip-col li strong { color: var(--ink); }
 
+
+/* Mobile jump nav */
+.nav-desktop { display: flex; flex-wrap: wrap; gap: .45rem .9rem; align-items: center; }
+.nav-jump { display: none; margin-left: auto; }
+.nav-jump select {
+  appearance: none; -webkit-appearance: none;
+  font-family: var(--sans); font-size: .85rem; font-weight: 600;
+  color: var(--wine); background: var(--paper);
+  border: 1px solid var(--line2); border-radius: 999px;
+  padding: .45rem 2rem .45rem .9rem;
+  min-height: 40px; cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--wine) 50%),
+    linear-gradient(135deg, var(--wine) 50%, transparent 50%);
+  background-position: calc(100% - 14px) 55%, calc(100% - 9px) 55%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+@media (max-width: 820px) {
+  .nav-desktop { display: none; }
+  .nav-jump { display: block; }
+  .topnav-inner { flex-wrap: nowrap; gap: .5rem; }
+  .brand { font-size: 1.05rem; margin-right: 0; flex: 1; min-width: 0; }
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); border: 0;
+}
+.alert-banner {
+  display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; justify-content: space-between;
+}
+.alert-banner .alert-copy { flex: 1 1 220px; }
+.btn-alert {
+  display: inline-flex; align-items: center; justify-content: center;
+  appearance: none; border: 0; cursor: pointer; text-decoration: none;
+  background: var(--alert); color: #fff; font-weight: 700; font-size: .85rem;
+  padding: .55rem 1rem; border-radius: 999px; min-height: 40px;
+  box-shadow: 0 4px 12px rgba(163, 58, 58, 0.25);
+  white-space: nowrap;
+}
+.btn-alert:hover { background: #8c2f2f; color: #fff; text-decoration: none; }
+.open-items {
+  margin-top: 1.15rem; padding: 1rem 1.15rem; border-radius: 14px;
+  background: #f3eadc; border: 1px solid var(--line);
+}
+.open-items h2 {
+  margin: 0 0 .55rem; font-family: var(--serif); font-size: 1.25rem; color: var(--ink); font-weight: 600;
+}
+.open-items ul { margin: 0; padding-left: 1.15rem; color: #3d342b; }
+.open-items li { margin: .35rem 0; }
+.open-items .done { color: var(--muted); text-decoration: line-through; }
+
 </style>
 </head>
 
 <body>
 <nav class="topnav"><div class="topnav-inner">
   <div class="brand">Jenson · Europe 2027</div>
-  <a class="navlink" href="#overview">Overview</a>
-  <a class="navlink" href="#ship">Ship</a>
-  <a class="navlink" href="#london">London</a>
-  <a class="navlink" href="#rome">Rome</a>
-  <a class="navlink" href="#embark">Embark</a>
-  <a class="navlink" href="#messina">Messina</a>
-  <a class="navlink" href="#sea1">Sea</a>
-  <a class="navlink" href="#katakolon">Olympia</a>
-  <a class="navlink" href="#corfu">Corfu</a>
-  <a class="navlink" href="#split">Split</a>
-  <a class="navlink" href="#bar">Kotor</a>
-  <a class="navlink" href="#dubrovnik">Dubrovnik</a>
-  <a class="navlink" href="#sea2">Sea</a>
-  <a class="navlink" href="#naples">Naples</a>
-  <a class="navlink" href="#home">Home</a>
+  <div class="nav-desktop">
+    <a class="navlink" href="#overview">Overview</a>
+    <a class="navlink" href="#ship">Ship</a>
+    <a class="navlink" href="#london">London</a>
+    <a class="navlink" href="#rome">Rome</a>
+    <a class="navlink" href="#embark">Embark</a>
+    <a class="navlink" href="#messina">Messina</a>
+    <a class="navlink" href="#sea1">Sea</a>
+    <a class="navlink" href="#katakolon">Olympia</a>
+    <a class="navlink" href="#corfu">Corfu</a>
+    <a class="navlink" href="#split">Split</a>
+    <a class="navlink" href="#bar">Kotor</a>
+    <a class="navlink" href="#dubrovnik">Dubrovnik</a>
+    <a class="navlink" href="#sea2">Sea</a>
+    <a class="navlink" href="#naples">Naples</a>
+    <a class="navlink" href="#home">Home</a>
+  </div>
+  <label class="nav-jump">
+    <span class="sr-only">Jump to section</span>
+    <select id="navJump" aria-label="Jump to section">
+      <option value="">Jump to…</option>
+      <option value="#overview">Overview</option>
+      <option value="#ship">Ship</option>
+      <option value="#london">London</option>
+      <option value="#rome">Rome</option>
+      <option value="#embark">Embark</option>
+      <option value="#messina">Messina</option>
+      <option value="#sea1">Sea day</option>
+      <option value="#katakolon">Olympia</option>
+      <option value="#corfu">Corfu</option>
+      <option value="#split">Split</option>
+      <option value="#bar">Kotor</option>
+      <option value="#dubrovnik">Dubrovnik</option>
+      <option value="#sea2">Sea day 2</option>
+      <option value="#naples">Naples</option>
+      <option value="#home">Home</option>
+    </select>
+  </label>
 </div></nav>
 
 <div class="countdown-bar" id="countdowns">
@@ -354,11 +426,22 @@ footer::before {
   <div class="meta-row">
     <span class="chip"><strong>Embark</strong> Fri Jun 4 · Civitavecchia · 5:00 pm</span>
     <span class="chip"><strong>Disembark</strong> Mon Jun 14 · 5:00 am</span>
-    <span class="chip"><strong>Bid</strong> 9491068</span>
+    <span class="chip"><strong>Booking bid</strong> 9491068</span>
     <span class="chip"><strong>Rooms</strong> 11150 · 11148 · Deck 11</span>
   </div>
   <div class="alert-banner">
-    <strong>Action needed:</strong> Bill &amp; Kelli <strong>LHR → FCO</strong> is still <strong>unbooked</strong> (kids already on Delta). Book London→Rome before Jun 1.
+    <div class="alert-copy"><strong>Action needed:</strong> Bill &amp; Kelli <strong>LHR → FCO</strong> is still <strong>unbooked</strong> (kids already on Delta). Book London→Rome before Jun 1.</div>
+    <a class="btn-alert" href="https://www.delta.com/" target="_blank" rel="noopener">Open Delta · book LHR→FCO</a>
+  </div>
+  <div class="open-items" id="open-items">
+    <h2>Open items</h2>
+    <ul>
+      <li><strong>Book LHR→FCO</strong> for Bill &amp; Kelli (before Jun 1) — kids already on Delta</li>
+      <li>Confirm <strong>Civitavecchia transfer</strong> on embark day (still TBD)</li>
+      <li>Decide <strong>Messina / Etna</strong> hold ($795) vs DIY</li>
+      <li>Cabana holds: sea day + Dubrovnik (TBD)</li>
+      <li>Port candidates: Corfu / Split / Naples — confirm or release</li>
+    </ul>
   </div>
   <div class="toc">
     <a href="#ship">Celebrity Ascent<span>Deck 11 · rooms · deck plans</span></a>
@@ -393,7 +476,7 @@ footer::before {
     <div class="ship-facts">
       <div class="fact"><div class="lbl">Room · Bill &amp; Kelli</div><div class="val">11150 · Deck 11</div></div>
       <div class="fact"><div class="lbl">Room · Kids</div><div class="val">11148 · Deck 11</div></div>
-      <div class="fact"><div class="lbl">Kids conf</div><div class="val">#0931851</div></div>
+      <div class="fact"><div class="lbl">Kids confirmation</div><div class="val">#0931851</div></div>
       <div class="fact"><div class="lbl">Booking bid</div><div class="val">9491068</div></div>
     </div>
     <div class="details">
@@ -1084,7 +1167,7 @@ footer::before {
   <p><strong>Jenson family · Europe 2027</strong> · Celebrity Ascent package <span class="mono">AT10M397</span> · sail 2027-06-04 · bid 9491068.</p>
   <p>Photos from Wikimedia Commons (see captions). Port times from Celebrity / CruiseTimetables. Deck plans linked to official Celebrity interactive maps — rooms 11150 &amp; 11148 on Deck 11; exact fare category not asserted.</p>
   <p>Confirmation numbers shown are only those provided on the planner sheet. No invented bookings.</p>
-  <p style="margin-top:1rem"><a href="#overview">Back to top</a> · Open locally with <span class="mono">python -m http.server</span> (see README).</p>
+  <p style="margin-top:1rem"><a href="#overview">Back to top</a></p>
 </footer>
 </div>
 
@@ -1117,6 +1200,19 @@ footer::before {
   tick();
   setInterval(tick, 1000);
 })();
+
+(function () {
+  var sel = document.getElementById("navJump");
+  if (!sel) return;
+  sel.addEventListener("change", function () {
+    var v = sel.value;
+    if (!v) return;
+    var el = document.querySelector(v);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    sel.value = "";
+  });
+})();
+
 </script>
 
 </body>
